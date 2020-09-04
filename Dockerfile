@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 # copy the content of the local src directory to the working directory
 COPY src/ .
 
-RUN ls -lha .
+RUN ls -lha /code
 
 # command to run on container start
-CMD [ "python", "./main.py" ] 
+CMD [ "python", "/code/main.py" ] 
