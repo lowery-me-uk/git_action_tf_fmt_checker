@@ -1,12 +1,17 @@
-FROM python:3-slim AS builder
-ADD . /app
-WORKDIR /app
+# set base image (host OS)
+FROM python:3.8
 
-RUN pip install --target=/app -r /app/requirements.txt
+# set the working directory in the container
+WORKDIR /code
 
-FROM gcr.io/distroless/python3-debian10
-COPY --from=builder /app /app
+# copy the dependencies file to the working directory
+COPY requirements.txt .
 
-WORKDIR /app
-ENV PYTHONPATH /app
-CMD ["/app/main.py"]
+# install dependencies
+RUN pip install -r requirements.txt
+
+# copy the content of the local src directory to the working directory
+COPY src/ .
+
+# command to run on container start
+CMD [ "python", "./main.py" ] 
