@@ -6,12 +6,12 @@ from subprocess import Popen, PIPE
 import requests
 
 def terraform_check_fmt():
-    p = Popen(["terraform", "fmt", "-check", "-recursive"], stdout=PIPE, stderr=PIPE, cwd='temp')
+    p = Popen(["terraform", "fmt", "-check", "-recursive"], stdout=PIPE, stderr=PIPE)
     print(p.communicate())
     return p.returncode
 
 def terraform_fmt():
-    p = Popen(["terraform", "fmt", "-recursive"], stdout=PIPE, stderr=PIPE, cwd='temp')
+    p = Popen(["terraform", "fmt", "-recursive"], stdout=PIPE, stderr=PIPE)
     print(p.communicate())
     return p.returncode
 
