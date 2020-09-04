@@ -16,4 +16,4 @@ COPY src/ .
 RUN ls -lha /code
 
 # command to run on container start
-CMD [ "python", "/code/main.py" ] 
+CMD [ "python", "/bin/bash" ] 
