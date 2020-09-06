@@ -12,9 +12,9 @@ if "INPUT_TERRAFORM_VERSION" in os.environ:
 else:
     tf_ver = ""
 
-if "GITHUB_TOKEN" in os.environ:
+if "INPUT_REPO-TOKEN" in os.environ:
     print("set: github token")
-    github_token = os.getenv("GITHUB_TOKEN")
+    github_token = os.getenv("INPUT_REPO-TOKEN")
 else:
     print("unable to set: github token")
     github_token = ""
