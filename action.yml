@@ -2,9 +2,9 @@ name: "Python Container Action Template"
 description: "check terraform fmt"
 author: "Andrew Lowert"
 inputs:
-  myInput:
-    description: "Input to use"
-    default: "world"
+  terraform_version:
+    description: "terraform version"
+    default: "0.13.2"
 outputs:
   myOutput:
     description: "Output from the action"
