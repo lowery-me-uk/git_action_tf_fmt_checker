@@ -17,7 +17,10 @@ if "GITHUB_TOKEN" in os.environ:
 else:
     github_token = ""
 
-
+if "GITHUB_REPOSITORY" in os.environ:
+    github_repo = os.getenv("GITHUB_REPOSITORY")
+else:
+    github_repo = ""
 
 def terraform_check_fmt():
     p = Popen(["./terraform", "fmt", "-check", "-recursive"], stdout=PIPE, stderr=PIPE)
@@ -40,9 +43,9 @@ def add_commit_to_branch(branch, message):
 def push_to_origin(branch):
     origin.push(branch)
 
-def create_pull_request(api_token, from_branch, into_branch):
+def create_pull_request(github_repo, api_token, from_branch, into_branch):
     g = github.Github(api_token)
-    repo = g.get_repo("lowery-me-uk/terraform-dns")
+    repo = g.get_repo(github_repo)
     repo.create_pull(title="fixing fmt", body='body', head=from_branch, base=into_branch)
 
 if __name__ == "__main__":
@@ -55,4 +58,4 @@ if __name__ == "__main__":
         terraform_fmt()
         add_commit_to_branch(branch,'fixing fmt')
         push_to_origin(branch)
-        create_pull_request(github_token, branch, 'master')
+        create_pull_request(github_repo, github_token, branch, 'master')
