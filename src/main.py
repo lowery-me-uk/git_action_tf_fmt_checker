@@ -4,14 +4,21 @@ import github
 import pathlib
 from subprocess import Popen, PIPE
 import requests
+import os
+import install_tf as tf
+
+if "terraform_version" in os.environ:
+    tf_ver = os.getenv("terraform_version")
+else:
+    tf_ver = ""
 
 def terraform_check_fmt():
-    p = Popen(["terraform", "fmt", "-check", "-recursive"], stdout=PIPE, stderr=PIPE)
+    p = Popen(["./terraform", "fmt", "-check", "-recursive"], stdout=PIPE, stderr=PIPE)
     print(p.communicate())
     return p.returncode
 
 def terraform_fmt():
-    p = Popen(["terraform", "fmt", "-recursive"], stdout=PIPE, stderr=PIPE)
+    p = Popen(["./terraform", "fmt", "-recursive"], stdout=PIPE, stderr=PIPE)
     print(p.communicate())
     return p.returncode
 
@@ -33,7 +40,7 @@ def terraform_fmt():
 
 if __name__ == "__main__":
     # repo = clone_repo('https://github.com/lowery-me-uk/terraform-dns')
-
+    tf.install(tf_ver)
     if terraform_check_fmt() != 0:
         print('yup')
         # origin = repo.remote()
