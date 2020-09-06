@@ -7,8 +7,8 @@ import requests
 import os
 import install_tf as tf
 
-if "terraform_version" in os.environ:
-    tf_ver = os.getenv("terraform_version")
+if "INPUT_TERRAFORM_VERSION" in os.environ:
+    tf_ver = os.getenv("INPUT_TERRAFORM_VERSION")
 else:
     tf_ver = ""
 
