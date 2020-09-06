@@ -13,7 +13,7 @@ def download_file(url):
     try:
         with requests.get(url, stream=True) as r:
             r.raise_for_status()
-            with open(local_filename, "wb") as f:
+            with open(f"../{local_filename}", "wb") as f:
                 for chunk in r.iter_content(chunk_size=8192):
                     f.write(chunk)
     except requests.exceptions.HTTPError as err:
@@ -35,16 +35,16 @@ def calculate_url_name(base_url, version, os_type):
 
 def unzip_file(filename):
     try:
-        zip = ZipFile(filename)
+        zip = ZipFile("../{filename}")
         zip.extractall()
     except OSError as e:
         print(f"Error: {e}")
         sys.exit(1)
 
-def add_execute_file_permission(file):
+def add_execute_file_permission(filename):
     try:
-        st = os.stat(file)
-        os.chmod(file, st.st_mode | stat.S_IEXEC)
+        st = os.stat("../{filename}")
+        os.chmod("../{filename}", st.st_mode | stat.S_IEXEC)
     except OSError as e:
         print(f"Error: {e}")
         sys.exit(1)
