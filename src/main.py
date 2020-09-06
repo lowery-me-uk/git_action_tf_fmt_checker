@@ -64,7 +64,8 @@ if __name__ == "__main__":
     repo = Repo(Path.cwd())
     if terraform_check_fmt() != 0:
         origin = repo.remote()
-        branch = f"{github_branch}_fmt_{int(time.time())}"
+        print(repo.active_branch.name)
+        branch = f"{repo.active_branch.name}_fmt_{int(time.time())}"
         create_branch(repo, branch)
         terraform_fmt()
         add_commit_to_branch(branch,'fixing fmt')
