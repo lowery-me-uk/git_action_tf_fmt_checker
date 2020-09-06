@@ -31,9 +31,12 @@ def get_os_version():
     return f"{system_map.get(system)}_{machine_map.get(machine)}"
 
 def calculate_url_name(base_url, version, os_type):
-    return f"{base_url}/{version}/terraform_{version}_{os_type}.zip"
+    url = f"{base_url}/{version}/terraform_{version}_{os_type}.zip"
+    print(f"INFO: calculating url - {url}")
+    return url
 
 def unzip_file(filename):
+    print("INFO: unzipping terraform archive")
     try:
         zip = ZipFile(f"../{filename}")
         zip.extractall()
@@ -42,6 +45,7 @@ def unzip_file(filename):
         sys.exit(1)
 
 def add_execute_file_permission(filename):
+    print("INFO: setting execute terraform permissios")
     try:
         st = os.stat(f"../{filename}")
         os.chmod(f"../{filename}", st.st_mode | stat.S_IEXEC)
