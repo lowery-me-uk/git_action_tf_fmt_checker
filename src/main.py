@@ -33,10 +33,12 @@ else:
 
 def terraform_check_fmt():
     p = Popen(["../terraform", "fmt", "-check", "-recursive"], stdout=PIPE, stderr=PIPE)
+    print(f"INFO: - {p.returncode}")
     return p.returncode
 
 def terraform_fmt():
     p = Popen(["../terraform", "fmt", "-recursive"], stdout=PIPE, stderr=PIPE)
+    print(f"INFO: - {p.returncode}")
     return p.returncode
 
 def create_branch(repo, branch):
