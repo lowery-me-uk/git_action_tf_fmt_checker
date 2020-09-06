@@ -35,7 +35,7 @@ def calculate_url_name(base_url, version, os_type):
 
 def unzip_file(filename):
     try:
-        zip = ZipFile("../{filename}")
+        zip = ZipFile(f"../{filename}")
         zip.extractall()
     except OSError as e:
         print(f"Error: {e}")
@@ -43,8 +43,8 @@ def unzip_file(filename):
 
 def add_execute_file_permission(filename):
     try:
-        st = os.stat("../{filename}")
-        os.chmod("../{filename}", st.st_mode | stat.S_IEXEC)
+        st = os.stat(f"../{filename}")
+        os.chmod(f"../{filename}", st.st_mode | stat.S_IEXEC)
     except OSError as e:
         print(f"Error: {e}")
         sys.exit(1)
