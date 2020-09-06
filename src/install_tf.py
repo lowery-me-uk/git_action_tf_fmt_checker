@@ -39,7 +39,7 @@ def unzip_file(filename):
     print("INFO: unzipping terraform archive")
     try:
         zip = ZipFile(f"../{filename}")
-        zip.extractall()
+        zip.extractall("../")
     except OSError as e:
         print(f"Error: {e}")
         sys.exit(1)
