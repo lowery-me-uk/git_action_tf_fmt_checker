@@ -5,6 +5,8 @@ inputs:
   terraform_version:
     description: "terraform version"
     default: "0.13.2"
+    repo_token:
+    description: "github token"
 outputs:
   myOutput:
     description: "Output from the action"
