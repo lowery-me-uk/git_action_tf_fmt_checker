@@ -7,6 +7,9 @@ inputs:
     default: "0.13.2"
   repo_token:
     description: "github token"
+  branch:
+    description: "github branch"
+    default: "master"
 outputs:
   myOutput:
     description: "Output from the action"
