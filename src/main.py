@@ -13,8 +13,10 @@ else:
     tf_ver = ""
 
 if "GITHUB_TOKEN" in os.environ:
+    print("set: github token")
     github_token = os.getenv("GITHUB_TOKEN")
 else:
+    print("unable to set: github token")
     github_token = ""
 
 if "GITHUB_REPOSITORY" in os.environ:
